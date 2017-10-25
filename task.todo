@@ -1,1 +1,7 @@
 ☐ Write a class Monitor
+☐ Create searchEngines table
+☐ Create sites table
+☐ Create a class to handle searchEngines searches and filtering
+☐ Create a user class to handle user searched and filtering
+☐ Create a keywords table
+☐ Create KeyWords class to handle search and filtering
