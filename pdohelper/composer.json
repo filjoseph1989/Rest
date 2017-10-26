@@ -1,0 +1,6 @@
+{
+	"autoload":
+	{
+		"classmap": ["library\/db.php", "library\/DBplugins\/defaultDBplugin.php", "library\/DBplugins\/mysql.php", "library\/DBplugins\/sqlsrv.php", "library\/DBplugins\/sqlite.php", "library\/DBplugins\/pgsql.php", "library\/SystemExceptons.php"]
+	}
+}
