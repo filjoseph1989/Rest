@@ -425,7 +425,7 @@ class DB
     public function Insert($table, $data, $query = '')
     {
       try {
-        $chk    = 0;
+        $row    = 0;
         $keys   = array();
         $values = array_values($data);
         $string = '';
@@ -437,12 +437,12 @@ class DB
           $keys[] = $key;
         }
 
-        $add = $this->db->prepare("INSERT INTO " . $table . " (" . implode(",", $keys) . ") VALUES (" . substr($string, 0, strlen($string) - 1) . ")" . $query . ";");
+        $add = $this->db->prepare("INSERT INTO {$table} (" . implode(",", $keys) . ") VALUES (" . substr($string, 0, strlen($string) - 1) . ") {$query};");
         $add->execute($values);
 
-        $chk = $add->rowCount();
-        if ($chk > 0) {
-          return $chk;
+        $row = $add->rowCount();
+        if ($row > 0) {
+          return $row;
         }
 
         return FALSE;
