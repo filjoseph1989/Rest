@@ -67,15 +67,15 @@ class DB
 
     }
 
-    function Inc($class)
+    function Inc($filename)
     {
-        $filename = strtolower(str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, ROOTDB . $class));
-        //echo $filename;
-        if (file_exists($filename) && is_file($filename)) {
-            require_once ($filename);
-            return TRUE;
-        }
-        return FALSE;
+      # $filename = strtolower(str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, ROOTDB . $class));
+      if (file_exists($filename) && is_file($filename)) {
+        require_once ($filename);
+        return TRUE;
+      }
+
+      return FALSE;
     }
 
     public function Sql()
@@ -87,30 +87,30 @@ class DB
 
     final public function Connect($engin, $database, $user = NULL, $pass = NULL, $host = 'localhost')
     {
-        try {
-            $this->Inc('/SystemException.php');
-            $this->data = array('type' => $engin, 'database' => $database, 'host' => $host, 'user' => $user, 'pass' => $pass);
+      try {
+        $this->Inc('pdohelper/library/SystemException.php');
+        $this->data = array('type' => $engin, 'database' => $database, 'host' => $host, 'user' => $user, 'pass' => $pass);
 
-            if ($engin !== NULL) {
-                if ($this->Inc('/DBplugins/' . $engin . ".php")) {
-                    $this->plugin = new $engin($this->data);
-                    $this->db = $this->plugin->db;
-                }
-                elseif ($this->Inc('/DBplugins/defaultDBplugin.php')) {
-                    $this->plugin = new defaultDBplugin($this->data);
-                    $this->db = $this->plugin->db;
-                }
-                else {
-                    throw new SystemException("Plugin was not loaded", 203346);
-                }
-            }
-        } catch (SystemException $e) {
-            if (defined('DBDEBUG'))
-                var_dump($e);
-            return FALSE;
+        if ($engin !== NULL) {
+          if ($this->Inc("pdohelper/library/DBplugins/{$engin}.php")) {
+            $this->plugin = new $engin($this->data);
+            $this->db     = $this->plugin->db;
+          }
+          elseif ($this->Inc('/DBplugins/defaultDBplugin.php')) {
+            $this->plugin = new defaultDBplugin($this->data);
+            $this->db     = $this->plugin->db;
+          }
+          else {
+            throw new SystemException("Plugin was not loaded", 203346);
+          }
         }
-
+      } catch (SystemException $e) {
+        if (defined('DBDEBUG'))
+        var_dump($e);
+        return FALSE;
+      }
     }
+
     /**
      * \PDO Begin transaction
      *

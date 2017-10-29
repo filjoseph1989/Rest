@@ -10,6 +10,20 @@ class ComposerStaticInit1bcbbdb05d3e15d5da74906faceac4b7
         '3917c79c5052b270641b5a200963dbc2' => __DIR__ . '/..' . '/kint-php/kint/init.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'D' => 
+        array (
+            'Dotenv\\' => 7,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
+    );
+
     public static $classMap = array (
         'Kint' => __DIR__ . '/..' . '/kint-php/kint/src/Kint.php',
         'Kint_Object' => __DIR__ . '/..' . '/kint-php/kint/src/Object.php',
@@ -93,6 +107,8 @@ class ComposerStaticInit1bcbbdb05d3e15d5da74906faceac4b7
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1bcbbdb05d3e15d5da74906faceac4b7::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1bcbbdb05d3e15d5da74906faceac4b7::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit1bcbbdb05d3e15d5da74906faceac4b7::$classMap;
 
         }, null, ClassLoader::class);
