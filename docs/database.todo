@@ -1,0 +1,16 @@
+List of Tables:
+
+Search_engines:
+  Contains the list of search engines
+  fields:
+    ☐ id
+    ☐ reference_id - Is the ID from the seranking database
+    ☐ region_id - Is the ID from seranking database
+    ☐ name
+
+Search_engine_regions:
+  This table means that search_engines table can have many region aside from the primary region
+  Fields:
+    ☐ Id
+    ☐ search_engine_id
+    ☐ region_id
