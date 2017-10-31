@@ -1,4 +1,15 @@
 <?php
+/**
+ * Dump variables
+ *
+ * @var mixed
+ */
+if (! function_exists('dd')) {
+  function dd($data) {
+    d($data); exit;
+  }
+}
+
 if (! function_exists('getSites')) {
   function getSites($data)
   {
