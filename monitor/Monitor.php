@@ -1,5 +1,6 @@
 <?php
-namespace Rest\Monitor;
+namespace Monitor;
+
 /**
  * Class to make request on seranking
  *

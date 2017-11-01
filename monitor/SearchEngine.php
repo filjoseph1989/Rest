@@ -1,5 +1,5 @@
 <?php
-namespace Rest\Monitor;
+namespace Monitor;
 
 /**
  * Manage the search engine table
@@ -33,6 +33,12 @@ class SearchEngine
    * @var array
    */
   private $regions = [];
+
+  /**
+   * Keepers of the $this->regions keys
+   * @var array
+   */
+  private $preserveKeys = [];
 
   /**
    * Instanstiate
@@ -70,7 +76,8 @@ class SearchEngine
           'name'                => $searchEngine['name'],
         ];
 
-        $result = $this->database->Insert('search_engines', $data);
+        $result = $this->database->Insert($this->table, $data);
+
         if ($result === false) {
           return false;
         }
@@ -79,4 +86,57 @@ class SearchEngine
 
     return true;
   }
+
+  /**
+   * return the list of regions
+   *
+   * @return array
+   */
+  public function getRegions()
+  {
+    if (self::isEqualRegion()) {
+      self::sortRegions();
+      return $this->regions;
+    }
+
+    return false;
+  }
+
+  /**
+   * Sort the list of regions
+   *
+   * @return void
+   */
+  private function sortRegions()
+  {
+    array_multisort($this->regions, SORT_ASC, SORT_REGULAR);
+  }
+
+  /**
+   * Check the given region if equal
+   *
+   * @return boolean
+   */
+  private function isEqualRegion()
+  {
+    $regions = $this->regions[0];
+    array_shift($this->regions);
+
+    if (is_array($this->regions)) {
+      foreach ($this->regions as $key => $otherRegion) {
+        if ($otherRegion !== $regions) {
+          $this->preserveKey[] = $key;
+        } else {
+          unset($this->regions[$key]);
+        }
+      }
+    }
+
+    if (empty($this->regions)) {
+      $this->regions = $regions;
+    }
+
+    return empty($this->preserveKey) ? true : false ;
+  }
+
 }

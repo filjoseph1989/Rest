@@ -27,7 +27,7 @@
 
  */
 
-namespace Library;
+namespace Pdohelper\Library;
 
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);

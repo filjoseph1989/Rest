@@ -1,17 +1,13 @@
 <?php
 require_once "vendor/autoload.php";
-require_once "pdohelper/library/db.php";
 require_once "helpers/functions.php";
-require_once "monitor/Monitor.php";
-require_once "monitor/SearchEngine.php";
 
 /**
  * API request
  * @var $monitor
  */
-$monitor = new \Rest\Monitor\Monitor;
+$monitor = new \Monitor\Monitor;
 $monitor->login();
-
 /**
  * configuration
  * @var Dotenv
@@ -20,7 +16,7 @@ $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
 # Load database
-$database = new \Library\DB;
+$database = new \Pdohelper\Library\DB;
 
 # Connection
 $database->Connect(
@@ -31,31 +27,18 @@ $database->Connect(
   getenv('DB_HOST')
 );
 
-$se     = new \Rest\Monitor\SearchEngine($monitor, $database);
-$result = $se->store();
-d($result);
-exit;
+$se      = new \Monitor\SearchEngine($monitor, $database);
+$result  = $se->store();
+$regions = $se->getRegions();
 
-$regions = $otherRegions[0];
-array_shift($otherRegions);
-
-if (is_array($otherRegions)) {
-  foreach ($otherRegions as $key => $otherRegion) {
-    if ($otherRegion === $regions) {
-      echo "yes";
-    } else {
-      echo "Update me, since you have unequal array";
-    }
-  }
+if ($regions === false) {
+  echo "Need to update the list of regions";
 }
 
-exit;
+echo "Successfully added the list of search engines <br>";
 
-// $data = getSites($monitor->sites());
-// extract($data);
-// d($sites, $search_engines);
+$regions = new \Monitor\Regions($regions, $database);
+$regions->store();
 
-// foreach ($sites as $key => $site) {
-// 	$result = $databse->Insert('sites', $site);
-// 	d($result);
-// }
+echo "Successfully added the list of search engines regions <br>";
+// d($result, $regions);
