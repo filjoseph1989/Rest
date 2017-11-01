@@ -6,5 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Pdohelper\\' => array($baseDir . '/pdohelper'),
+    'Monitor\\' => array($baseDir . '/monitor'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
 );

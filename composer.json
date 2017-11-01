@@ -1,6 +1,17 @@
 {
-    "require": {
-        "kint-php/kint": "^2.2",
-        "vlucas/phpdotenv": "^2.4"
+  "name": "Monitorbiz",
+  "description": "A framework for monitorbiz.com.",
+  "keywords": ["monitorbiz"],
+  "license": "MIT",
+  "type": "project",
+  "require": {
+      "kint-php/kint": "^2.2",
+      "vlucas/phpdotenv": "^2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Monitor\\": "monitor/",
+      "Pdohelper\\": "pdohelper/"
     }
+  }
 }

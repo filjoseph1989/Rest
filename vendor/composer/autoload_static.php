@@ -11,6 +11,14 @@ class ComposerStaticInit1bcbbdb05d3e15d5da74906faceac4b7
     );
 
     public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Pdohelper\\' => 10,
+        ),
+        'M' => 
+        array (
+            'Monitor\\' => 8,
+        ),
         'D' => 
         array (
             'Dotenv\\' => 7,
@@ -18,6 +26,14 @@ class ComposerStaticInit1bcbbdb05d3e15d5da74906faceac4b7
     );
 
     public static $prefixDirsPsr4 = array (
+        'Pdohelper\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/pdohelper',
+        ),
+        'Monitor\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/monitor',
+        ),
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
