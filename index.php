@@ -30,6 +30,7 @@ $database->Connect(
 
 $se      = new \Monitor\SearchEngine($monitor, $database);
 $result  = $se->store();
+$keys    = $se->getSearchEngineId();
 $regions = $se->getRegions();
 
 if ($regions === false) {
@@ -42,4 +43,3 @@ $regions = new \Monitor\Regions($regions, $database);
 $regions->store();
 
 echo "Successfully added the list of search engines regions <br>";
-// d($result, $regions);

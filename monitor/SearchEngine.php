@@ -41,6 +41,12 @@ class SearchEngine
   private $preserveKeys = [];
 
   /**
+   * Keepers of search engine keys
+   * @var array
+   */
+  private $searchEngineKeys = [];
+
+  /**
    * Instanstiate
    */
   public function __construct($object, $database)
@@ -65,7 +71,8 @@ class SearchEngine
     if (is_array($searchEngines)) {
       foreach ($searchEngines as $key => $searchEngine) {
         if (count($searchEngine['regions']) > 0) {
-          $this->regions[] = $searchEngine['regions'];
+          $this->regions[]          = $searchEngine['regions'];
+          $this->searchEngineKeys[] = $key;
         }
 
         unset($searchEngine['regions']);
@@ -100,6 +107,16 @@ class SearchEngine
     }
 
     return false;
+  }
+
+  /**
+   * return the list of search engine id
+   *
+   * @return array
+   */
+  public function getSearchEngineId()
+  {
+    return $this->searchEngineKeys;
   }
 
   /**
@@ -138,5 +155,4 @@ class SearchEngine
 
     return empty($this->preserveKey) ? true : false ;
   }
-
 }
