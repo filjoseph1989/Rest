@@ -16,7 +16,7 @@ $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
 # Load database
-$database = new \Pdohelper\Library\DB;
+$database = new \Database\Library\Db;
 
 # Connection
 $database->Connect(

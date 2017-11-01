@@ -1,7 +1,7 @@
 <?php
 
 /**
-* 
+*
  * PHPRender fast and simple to use PHP MVC framework
  *
  * MVC Framework for PHP 5.2 + with PHP files views part of YMVC System
@@ -23,16 +23,16 @@
  * @version    2.0.1
  * @link       http://ymvc.ydk2.tk
  * @since      File available since Release 1.0.0
- 
+
  */
-namespace Library;
+namespace Database\Library;
 
 class SystemException extends \Exception {
 	
 	public function Code() {
 		return $this->getCode();
 	}
-		
+
 	public function Message() {
 		return $this->getMessage();
 	}
