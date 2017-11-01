@@ -8,6 +8,7 @@ require_once "helpers/functions.php";
  */
 $monitor = new \Monitor\Monitor;
 $monitor->login();
+
 /**
  * configuration
  * @var Dotenv
@@ -16,7 +17,7 @@ $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
 # Load database
-$database = new \Database\Library\Db;
+$database = new \Database\Db;
 
 # Connection
 $database->Connect(

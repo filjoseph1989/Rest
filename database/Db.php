@@ -1,5 +1,7 @@
 <?php
 
+namespace Database;
+
 /**
  *
  *
@@ -26,8 +28,6 @@
  * @since      File available since Release 1.2.0
 
  */
-
-namespace Database\Library;
 
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
@@ -88,11 +88,11 @@ class Db
     final public function Connect($engin, $database, $user = NULL, $pass = NULL, $host = 'localhost')
     {
       try {
-        $this->Inc('database/library/SystemException.php');
+        $this->Inc('database/SystemException.php');
         $this->data = array('type' => $engin, 'database' => $database, 'host' => $host, 'user' => $user, 'pass' => $pass);
 
         if ($engin !== NULL) {
-          if ($this->Inc("database/library/DBplugins/{$engin}.php")) {
+          if ($this->Inc("database/DBplugins/{$engin}.php")) {
             $this->plugin = new $engin($this->data);
             $this->db     = $this->plugin->db;
           }

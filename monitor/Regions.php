@@ -43,6 +43,10 @@ class Regions
   /**
    * store regions in the database
    *
+   * Issue 3
+   * The problem here is to check wether
+   * theres a need to update the region list
+   *
    * @return boolean
    */
   public function store()
