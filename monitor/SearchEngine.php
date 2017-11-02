@@ -132,6 +132,10 @@ class SearchEngine
   /**
    * Check the given region if equal
    *
+   * Issue 4:
+   * Naa problem ani nga logic, return false
+   * next time
+   *
    * @return boolean
    */
   private function isEqualRegion()
@@ -139,7 +143,7 @@ class SearchEngine
     $regions = $this->regions[0];
     array_shift($this->regions);
 
-    if (is_array($this->regions)) {
+    if (is_array($this->regions) and count($this->regions[0]) > 1) {
       foreach ($this->regions as $key => $otherRegion) {
         if ($otherRegion !== $regions) {
           $this->preserveKey[] = $key;

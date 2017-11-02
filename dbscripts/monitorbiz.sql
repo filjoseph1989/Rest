@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `regions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `reference_id` int(11) unsigned NOT NULL DEFAULT '0',
   `name` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `is_for_yandex` ENUM('true','false') NOT NULL DEFAULT 'false' COLLATE 'utf8_unicode_ci',
   KEY `Index 1` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='The list of regions';
 
