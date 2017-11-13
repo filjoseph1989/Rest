@@ -2,6 +2,10 @@
 require_once "vendor/autoload.php";
 require_once "helpers/functions.php";
 
+use \Database\Db;
+use \Monitor\Regions;
+use \Monitor\SearchEngine;
+
 /**
  * API request
  * @var $monitor
@@ -17,7 +21,7 @@ $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
 # Load database
-$database = new \Database\Db;
+$database = new Db;
 
 # Connection
 $database->Connect(
@@ -28,7 +32,7 @@ $database->Connect(
   getenv('DB_HOST')
 );
 
-$se      = new \Monitor\SearchEngine($monitor, $database);
+$se      = new SearchEngine($monitor, $database);
 $result  = $se->store();
 $keys    = $se->getSearchEngineId();
 $regions = $se->getRegions();
@@ -39,7 +43,7 @@ if ($regions === false) {
 
 echo "Successfully added the list of search engines <br>";
 
-$regions = new \Monitor\Regions($regions, $database);
+$regions = new Regions($regions, $database);
 $regions->store();
 
 echo "Successfully added the list of search engines regions <br>";
